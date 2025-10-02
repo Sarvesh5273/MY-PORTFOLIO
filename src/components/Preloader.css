@@ -1,43 +1,20 @@
-body {
-  margin: 0;
-  background-color: black;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .preloader {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: black;
 }
 
-/* Signature drawing animation */
 #signature {
   stroke-dasharray: 2805;
   stroke-dashoffset: 2805;
-  animation: sign 6s ease forwards, breathe 5s ease-in-out 6s infinite;
-  /* sign = draw, breathe = pulsate after draw */
+  animation: sign 6s ease forwards;
 }
 
-/* Draw animation */
 @keyframes sign {
   to {
     stroke-dashoffset: 0;
-  }
-}
-
-/* Breathing animation: subtle opacity scale */
-@keyframes breathe {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.05);
   }
 }

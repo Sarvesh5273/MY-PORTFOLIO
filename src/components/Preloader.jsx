@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import "./Preloader.css"; // we’ll keep your existing CSS here
+import "./Preloader.css";
 
 export default function Preloader({ onFinish }) {
   useEffect(() => {
-    // Preloader duration same as your HTML animation
     const timer = setTimeout(() => onFinish(), 6000); // 6s total
     return () => clearTimeout(timer);
   }, [onFinish]);
@@ -11,8 +10,8 @@ export default function Preloader({ onFinish }) {
   return (
     <div className="preloader">
       <svg
-        width="601"
-        height="385"
+        width="200"
+        height="92"
         viewBox="0 0 601 385"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
