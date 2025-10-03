@@ -24,8 +24,8 @@ export default function Preloader({ onFinish }) {
   return (
     <div className={`preloader ${isFading ? "fade-out" : ""}`}>
       <svg
-        width="200"
-        height="92"
+        width="300"
+        height="192"
         viewBox="0 0 601 385"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

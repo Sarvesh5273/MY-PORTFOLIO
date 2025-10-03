@@ -2,8 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add this html block */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: #000;
-  margin: 0; /* This removes the default browser margin */
-  overflow-x: hidden; /* This prevents the horizontal scrollbar */
+  margin: 0;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+a, button {
+  cursor: none;
 }

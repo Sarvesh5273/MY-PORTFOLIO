@@ -2,20 +2,13 @@ import { motion } from "framer-motion";
 
 export default function Contact() {
   return (
-    // Changed: Added pt-24 to increase the top padding
     <div id="contact" className="relative min-h-screen flex flex-col justify-center items-center p-8 pt-24 overflow-hidden">
         <motion.img
             src="/contact-planet.png"
             alt="A purple planet"
             className="absolute top-[5%] left-[-20%] w-[70%] max-w-4xl opacity-40 z-0"
-            animate={{
-                rotate: 360,
-            }}
-            transition={{
-                duration: 80,
-                repeat: Infinity,
-                ease: "linear",
-            }}
+            animate={{ rotate: 360 }}
+            transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
         />
 
       <motion.h2
@@ -23,7 +16,7 @@ export default function Contact() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
+        // Removed viewport={{ once: true }}
       >
         Contact Me
       </motion.h2>
@@ -33,7 +26,7 @@ export default function Contact() {
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
+        // Removed viewport={{ once: true }}
       >
         <form className="w-full">
           {/* Input fields remain the same */}

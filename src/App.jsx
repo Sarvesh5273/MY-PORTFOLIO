@@ -7,6 +7,7 @@ import Projects from "./components/Projects.jsx";
 import Skills from "./components/Skills.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
+import Cursor from "./components/Cursor.jsx"; // 1. Import the Cursor component
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -17,6 +18,7 @@ export default function App() {
 
   return (
     <>
+      <Cursor /> {/* 2. Add the Cursor component here */}
       <InteractiveStarfield />
       <Navbar />
       <MainSite />

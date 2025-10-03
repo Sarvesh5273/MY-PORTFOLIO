@@ -18,18 +18,20 @@ export default function Cursor() {
 
   const variants = {
     default: {
-      x: mousePosition.x - 8, // Center the dot
-      y: mousePosition.y - 8,
-      backgroundColor: "#ffffff",
+      x: mousePosition.x,
+      y: mousePosition.y,
     },
   };
 
   return (
-    <motion.div
-      className="fixed top-0 left-0 w-4 h-4 rounded-full z-50 pointer-events-none"
+    <motion.img
+      className="fixed top-0 left-0 w-12 h-12 z-[9999] pointer-events-none transform -rotate-45"
+      src="/cursor.png"
+      alt="Rocket cursor"
       variants={variants}
       animate="default"
-      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+      // Changed: Adjusted stiffness and damping for a smoother feel
+      transition={{ type: "spring", stiffness: 400, damping: 40 }}
     />
   );
 }
