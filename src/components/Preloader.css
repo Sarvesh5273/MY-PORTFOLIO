@@ -5,12 +5,18 @@
   justify-content: center;
   align-items: center;
   background-color: black;
+  transition: opacity 1s ease-in-out; /* Smooth 1s fade */
+}
+
+.preloader.fade-out {
+  opacity: 0; /* The target for the fade */
 }
 
 #signature {
   stroke-dasharray: 2805;
   stroke-dashoffset: 2805;
-  animation: sign 6s ease forwards;
+  /* Signature will draw for 4 seconds */
+  animation: sign 4s ease-in-out forwards;
 }
 
 @keyframes sign {

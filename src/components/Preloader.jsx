@@ -1,14 +1,28 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./Preloader.css";
 
 export default function Preloader({ onFinish }) {
+  const [isFading, setIsFading] = useState(false);
+
   useEffect(() => {
-    const timer = setTimeout(() => onFinish(), 6000); // 6s total
-    return () => clearTimeout(timer);
+    // Start the fade-out after the signature animation is done (4 seconds)
+    const fadeTimer = setTimeout(() => {
+      setIsFading(true);
+    }, 4000);
+
+    // Tell the main app that the preloader is finished after the fade is complete
+    const finishTimer = setTimeout(() => {
+      onFinish();
+    }, 5000); // 4s signature + 1s fade
+
+    return () => {
+      clearTimeout(fadeTimer);
+      clearTimeout(finishTimer);
+    };
   }, [onFinish]);
 
   return (
-    <div className="preloader">
+    <div className={`preloader ${isFading ? "fade-out" : ""}`}>
       <svg
         width="200"
         height="92"

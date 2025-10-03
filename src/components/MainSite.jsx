@@ -1,7 +1,12 @@
+import { motion } from "framer-motion";
+
 export default function MainSite() {
   return (
-    <div
+    <motion.div
       className="min-h-screen bg-black text-white flex flex-col justify-center items-center"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1.2 }} // Fade in over 1.2 seconds
     >
       <div className="text-center p-8">
         <h1 className="text-5xl md:text-7xl font-bold mb-4">
@@ -17,6 +22,6 @@ export default function MainSite() {
           View My Work
         </a>
       </div>
-    </div>
+    </motion.div>
   );
 }
