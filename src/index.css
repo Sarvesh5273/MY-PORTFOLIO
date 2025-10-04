@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add this html block */
 html {
   scroll-behavior: smooth;
 }
@@ -11,9 +10,7 @@ body {
   background-color: #000;
   margin: 0;
   overflow-x: hidden;
-  cursor: none;
+  /* The cursor: none; property has been removed */
 }
 
-a, button {
-  cursor: none;
-}
+/* The a, button override has been removed */

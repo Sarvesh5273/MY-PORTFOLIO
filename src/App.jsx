@@ -7,8 +7,7 @@ import Projects from "./components/Projects.jsx";
 import Skills from "./components/Skills.jsx";
 import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
-import Cursor from "./components/Cursor.jsx";
-import ScrollingRocket from "./components/ScrollingRocket.jsx"; // 1. Import the rocket
+// The Cursor import has been removed
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -19,9 +18,8 @@ export default function App() {
 
   return (
     <>
-      <Cursor />
+      {/* The Cursor component has been removed from here */}
       <InteractiveStarfield />
-      <ScrollingRocket /> {/* 2. Add the rocket here */}
       <Navbar />
       <MainSite />
       <Projects />
