@@ -1,32 +1,39 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function Contact() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [25, -25]);
+  const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [25, -25]);
+
+  const handleMouseMove = (event) => {
+    x.set(event.clientX);
+    y.set(event.clientY);
+  };
+
   return (
-    <div id="contact" className="relative min-h-screen flex flex-col justify-center items-center p-8 pt-24 overflow-hidden">
+    <div id="contact" className="relative min-h-screen flex flex-col justify-center items-center p-8 pt-24 overflow-hidden" onMouseMove={handleMouseMove}>
         <motion.img
             src="/contact-planet.png"
             alt="A purple planet"
             className="absolute top-[5%] left-[-20%] w-[70%] max-w-4xl opacity-40 z-0"
+            style={{ x: moveX, y: moveY }}
             animate={{ rotate: 360 }}
             transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
         />
-
       <motion.h2
         className="text-4xl md:text-5xl font-bold text-white text-center mb-12 z-10"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        // Removed viewport={{ once: true }}
       >
         Contact Me
       </motion.h2>
-
       <motion.div
         className="w-full max-w-lg z-10 bg-white/5 backdrop-blur-md rounded-2xl p-8"
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        // Removed viewport={{ once: true }}
       >
         <form className="w-full">
           {/* Input fields remain the same */}

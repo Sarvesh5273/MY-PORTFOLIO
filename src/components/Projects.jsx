@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const projects = [
   { title: "Project One", description: "A brief description...", link: "#", liveLink: "#" },
@@ -7,12 +7,23 @@ const projects = [
 ];
 
 export default function Projects() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [30, -30]);
+  const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [30, -30]);
+
+  const handleMouseMove = (event) => {
+    x.set(event.clientX);
+    y.set(event.clientY);
+  };
+
   return (
-    <div id="projects" className="relative min-h-screen flex flex-col justify-center items-center p-8 overflow-hidden">
+    <div id="projects" className="relative min-h-screen flex flex-col justify-center items-center p-8 overflow-hidden" onMouseMove={handleMouseMove}>
       <motion.img
-        src="/mars.png" // Changed: Use direct path from public folder
+        src="/mars.png"
         alt="A red planet"
         className="absolute top-[5%] left-[-20%] w-[70%] max-w-4xl opacity-40"
+        style={{ x: moveX, y: moveY }}
         animate={{ rotate: 360 }}
         transition={{ duration: 200, repeat: Infinity, ease: "linear" }}
       />

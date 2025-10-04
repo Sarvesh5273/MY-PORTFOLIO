@@ -1,25 +1,29 @@
-import { motion } from "framer-motion";
-
-// The import statement for earthImage has been removed
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function MainSite() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-20, 20]);
+  const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-20, 20]);
+
+  const handleMouseMove = (event) => {
+    x.set(event.clientX);
+    y.set(event.clientY);
+  };
+
   return (
     <div
       id="home"
       className="relative min-h-screen flex items-center p-8 overflow-hidden"
+      onMouseMove={handleMouseMove}
     >
       <motion.img
-          src="/earth.png" // Changed: Use direct path from public folder
+          src="/earth.png"
           alt="The Earth"
           className="absolute top-[5%] right-[-20%] w-[70%] max-w-4xl opacity-40 z-0"
-          animate={{
-            rotate: 360,
-          }}
-          transition={{
-            duration: 150,
-            repeat: Infinity,
-            ease: "linear",
-          }}
+          style={{ x: moveX, y: moveY }}
+          animate={{ rotate: 360 }}
+          transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
       />
       <div className="flex w-full max-w-7xl mx-auto">
         <motion.div

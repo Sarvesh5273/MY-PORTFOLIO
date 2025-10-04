@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaGitAlt } from 'react-icons/fa';
 
 const skills = [
@@ -11,12 +11,23 @@ const skills = [
 ];
 
 export default function Skills() {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-15, 15]);
+  const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-15, 15]);
+
+  const handleMouseMove = (event) => {
+    x.set(event.clientX);
+    y.set(event.clientY);
+  };
+
   return (
-    <div id="skills" className="relative min-h-screen flex flex-col justify-center items-center p-8 overflow-hidden">
+    <div id="skills" className="relative min-h-screen flex flex-col justify-center items-center p-8 overflow-hidden" onMouseMove={handleMouseMove}>
         <motion.img
-            src="/saturn.png" // Changed: Use direct path from public folder
+            src="/saturn.png"
             alt="A planet with rings"
             className="absolute top-[5%] right-[-20%] w-[70%] max-w-4xl opacity-30 z-0"
+            style={{ x: moveX, y: moveY }}
             animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
             transition={{ duration: 40, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
         />
