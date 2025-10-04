@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaGitAlt } from 'react-icons/fa';
+import Spline from '@splinetool/react-spline'; // 1. Import Spline
 
 const skills = [
   { icon: <FaHtml5 />, name: "HTML5" },
@@ -23,14 +24,15 @@ export default function Skills() {
 
   return (
     <div id="skills" className="relative min-h-screen flex flex-col justify-center items-center p-8 overflow-hidden" onMouseMove={handleMouseMove}>
-        <motion.img
-            src="/saturn.png"
-            alt="A planet with rings"
-            className="absolute top-[5%] right-[-20%] w-[70%] max-w-4xl opacity-30 z-0"
-            style={{ x: moveX, y: moveY }}
-            animate={{ y: [0, 20, 0], rotate: [0, -5, 0] }}
-            transition={{ duration: 40, repeat: Infinity, repeatType: "mirror", ease: "easeInOut" }}
-        />
+      
+      {/* 2. Replaced the <img> with a container for your Spline scene */}
+      <motion.div
+        className="absolute top-[5%] right-[-20%] w-[70%] max-w-4xl h-auto aspect-square z-0"
+        style={{ x: moveX, y: moveY }} // The parallax effect will still work
+      >
+        <Spline scene="https://prod.spline.design/LwLNopv4K9vIckN6/scene.splinecode" />
+      </motion.div>
+      
       <motion.h2
         className="text-4xl md:text-5xl font-bold text-white text-center mb-12 z-10"
         initial={{ opacity: 0, y: 20 }}
@@ -39,6 +41,7 @@ export default function Skills() {
       >
         My Skills
       </motion.h2>
+
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 max-w-7xl z-10">
         {skills.map((skill, index) => (
           <motion.div
