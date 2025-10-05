@@ -1,11 +1,12 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import Spline from '@splinetool/react-spline';
+import React, { Suspense } from "react"; 
+
+const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
 export default function MainSite() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  // Parallax effect for mouse movement
   const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-20, 20]);
   const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-20, 20]);
 
@@ -27,8 +28,9 @@ export default function MainSite() {
             y: moveY,
           }}
       >
-          {/* The Spline scene has been updated to your new transparent version */}
-          <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />
+          </Suspense>
       </motion.div>
 
       <div className="flex w-full max-w-7xl mx-auto">
@@ -36,7 +38,7 @@ export default function MainSite() {
           className="relative z-10 text-center md:text-left md:w-1/2"
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2 }}
+          transition={{ duration: 1 }} // Slightly faster transition
         >
           <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
             Hi, I'm Sarvesh
@@ -55,19 +57,19 @@ export default function MainSite() {
               <motion.div
                 className="absolute inset-0 bg-black"
                 variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: "easeOut" }} // Faster transition
               />
               <motion.span
                 className="relative whitespace-nowrap font-bold"
                 variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.3, ease: "easeOut" }} // Faster transition
               >
                 View My Work
               </motion.span>
             </motion.a>
             <a
               href="#contact"
-              className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-black transition-colors"
+              className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-black transition-colors duration-300" // Use Tailwind's transition classes
             >
               Get in Touch
             </a>
@@ -77,4 +79,3 @@ export default function MainSite() {
     </div>
   );
 }
-
