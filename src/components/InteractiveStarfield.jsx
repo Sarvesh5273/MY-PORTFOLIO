@@ -26,24 +26,24 @@ const InteractiveStarfield = () => {
         value: "#ffffff",
       },
       move: {
-        direction: "bottom", // Stars will move downwards
+        direction: "bottom",
         enable: true,
         outModes: {
           default: "out",
         },
         random: false,
-        speed: 0.3, // A slow, steady speed
-        straight: true, // Move in a straight line
+        speed: 0.3,
+        straight: true,
       },
       number: {
         density: {
           enable: true,
           area: 800,
         },
-        value: 150,
+        value: 80, // Reduced from 150 to 80
       },
       opacity: {
-        value: { min: 0.1, max: 0.7 },
+        value: { min: 0.1, max: 0.5 }, // Reduced max opacity
         animation: {
           enable: true,
           speed: 1,

@@ -10,7 +10,5 @@ body {
   background-color: #000;
   margin: 0;
   overflow-x: hidden;
-  /* The cursor: none; property has been removed */
+  /* All cursor properties have been removed to restore the default system cursor */
 }
-
-/* The a, button override has been removed */

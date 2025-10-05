@@ -1,8 +1,11 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
+import Spline from '@splinetool/react-spline';
 
 export default function MainSite() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
+
+  // Parallax effect for mouse movement
   const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-20, 20]);
   const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-20, 20]);
 
@@ -17,14 +20,17 @@ export default function MainSite() {
       className="relative min-h-screen flex items-center p-8 overflow-hidden"
       onMouseMove={handleMouseMove}
     >
-      <motion.img
-          src="/earth.png"
-          alt="The Earth"
-          className="absolute top-[5%] right-[-20%] w-[70%] max-w-4xl opacity-40 z-0"
-          style={{ x: moveX, y: moveY }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 150, repeat: Infinity, ease: "linear" }}
-      />
+      <motion.div
+          className="absolute top-0 -right-[15%] w-[100%] h-full md:w-[80%] z-0"
+          style={{ 
+            x: moveX, 
+            y: moveY,
+          }}
+      >
+          {/* The Spline scene has been updated to your new transparent version */}
+          <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />
+      </motion.div>
+
       <div className="flex w-full max-w-7xl mx-auto">
         <motion.div
           className="relative z-10 text-center md:text-left md:w-1/2"
@@ -49,12 +55,12 @@ export default function MainSite() {
               <motion.div
                 className="absolute inset-0 bg-black"
                 variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
               />
               <motion.span
                 className="relative whitespace-nowrap font-bold"
                 variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
               >
                 View My Work
               </motion.span>
@@ -71,3 +77,4 @@ export default function MainSite() {
     </div>
   );
 }
+

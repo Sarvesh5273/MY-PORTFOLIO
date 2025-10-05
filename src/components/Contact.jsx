@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import Spline from '@splinetool/react-spline'; // 1. Import Spline
+import Spline from '@splinetool/react-spline';
 
 export default function Contact() {
   const x = useMotionValue(0);
@@ -15,10 +15,10 @@ export default function Contact() {
   return (
     <div id="contact" className="relative min-h-screen flex flex-col justify-center items-center p-8 pt-24 overflow-hidden" onMouseMove={handleMouseMove}>
         
-        {/* 2. Replaced the <img> with a container for your new Spline scene */}
+        {/* Responsive Spline container */}
         <motion.div
-            className="absolute top-[5%] left-[-20%] w-[70%] max-w-4xl h-auto aspect-square z-0"
-            style={{ x: moveX, y: moveY }} // The parallax effect will still work
+            className="absolute top-[5%] left-[-50%] md:left-[-20%] w-[100%] md:w-[70%] max-w-4xl h-auto aspect-square z-0"
+            style={{ x: moveX, y: moveY }}
         >
             <Spline scene="https://prod.spline.design/8oZX4o936TB2FIgY/scene.splinecode" />
         </motion.div>
@@ -80,12 +80,12 @@ export default function Contact() {
               <motion.div
                 className="absolute inset-0 bg-black"
                 variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
               />
               <motion.span
                 className="relative whitespace-nowrap font-bold"
                 variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-                transition={{ duration: 0.3, ease: "easeInOut" }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
               >
                 Send Message
               </motion.span>

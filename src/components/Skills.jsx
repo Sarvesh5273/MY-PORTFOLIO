@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaGitAlt } from 'react-icons/fa';
-import Spline from '@splinetool/react-spline'; // 1. Import Spline
+import Spline from '@splinetool/react-spline';
 
 const skills = [
   { icon: <FaHtml5 />, name: "HTML5" },
@@ -14,8 +14,9 @@ const skills = [
 export default function Skills() {
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-15, 15]);
-  const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-15, 15]);
+  const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-5, 5]);
+  // The typo "a" has been removed from the line below
+  const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-5, 5]);
 
   const handleMouseMove = (event) => {
     x.set(event.clientX);
@@ -25,10 +26,9 @@ export default function Skills() {
   return (
     <div id="skills" className="relative min-h-screen flex flex-col justify-center items-center p-8 overflow-hidden" onMouseMove={handleMouseMove}>
       
-      {/* 2. Replaced the <img> with a container for your Spline scene */}
       <motion.div
         className="absolute top-[5%] right-[-20%] w-[70%] max-w-4xl h-auto aspect-square z-0"
-        style={{ x: moveX, y: moveY }} // The parallax effect will still work
+        style={{ x: moveX, y: moveY }}
       >
         <Spline scene="https://prod.spline.design/LwLNopv4K9vIckN6/scene.splinecode" />
       </motion.div>
@@ -46,6 +46,7 @@ export default function Skills() {
         {skills.map((skill, index) => (
           <motion.div
             key={index}
+            id={skill.name === "HTML5" ? "html5-box" : undefined}
             className="flex flex-col items-center justify-center bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-6"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}

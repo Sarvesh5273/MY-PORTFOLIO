@@ -1,13 +1,15 @@
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import Preloader from "./components/Preloader.jsx";
 import MainSite from "./components/MainSite.jsx";
 import Navbar from "./components/Navbar.jsx";
 import InteractiveStarfield from "./components/InteractiveStarfield.jsx";
 import Projects from "./components/Projects.jsx";
-import Skills from "./components/Skills.jsx";
-import Contact from "./components/Contact.jsx";
 import Footer from "./components/Footer.jsx";
-// The Cursor import has been removed
+import Astronaut from "./components/Astronaut.jsx"; // Import the new component
+
+// Lazy load the heavy components
+const Skills = lazy(() => import("./components/Skills.jsx"));
+const Contact = lazy(() => import("./components/Contact.jsx"));
 
 export default function App() {
   const [loading, setLoading] = useState(true);
@@ -18,13 +20,15 @@ export default function App() {
 
   return (
     <>
-      {/* The Cursor component has been removed from here */}
+      <Astronaut /> {/* Add the astronaut here */}
       <InteractiveStarfield />
       <Navbar />
       <MainSite />
       <Projects />
-      <Skills />
-      <Contact />
+      <Suspense fallback={<div className="text-white text-center p-12">Loading Section...</div>}>
+        <Skills />
+        <Contact />
+      </Suspense>
       <Footer />
     </>
   );
