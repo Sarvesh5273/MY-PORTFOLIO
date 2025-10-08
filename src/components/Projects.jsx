@@ -1,9 +1,19 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
+// I've added liveLink properties. Set them to "#" if no live link is available.
 const projects = [
-  { title: "SkillNova", description: "[In Progress] An AI-powered platform that personalizes learning for every student, helping you master skills, build a standout resume, and land your dream job at your own pace. ", link: "https://github.com/Sarvesh5273/SkillNova.git", liveLink: "#" },
-  { title: "AI Tools Manager", description: "Your all-in-one dashboard to find, manage, and optimize AI tools for every workflow.", link: "https://github.com/Sarvesh5273/AI_Tools_Manager.git", liveLink: "#" },
-  { title: "Project Three", description: "A brief description...", link: "#", liveLink: "#" }
+  { 
+    title: "SkillNova", 
+    description: "[In Progress] An AI-powered platform that personalizes learning for every student, helping you master skills, build a standout resume, and land your dream job at your own pace.", 
+    link: "https://github.com/Sarvesh5273/SkillNova.git",
+    liveLink: "#" 
+  },
+  { 
+    title: "AI Tools Manager", 
+    description: "Your all-in-one dashboard to find, manage, and optimize AI tools for every workflow.", 
+    link: "https://github.com/Sarvesh5273/AI_Tools_Manager.git",
+    liveLink: "#"
+  },
 ];
 
 export default function Projects() {
@@ -35,11 +45,16 @@ export default function Projects() {
       >
         My Projects
       </motion.h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl z-10">
+      {/* Key Changes for Alignment:
+        1. Changed lg:grid-cols-3 to lg:grid-cols-2 to better suit two projects.
+        2. Added justify-center to center the items within the grid container.
+      */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl z-10 w-full justify-center">
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-6 flex flex-col justify-between"
+            // Added `h-full` to ensure cards in the same row have equal height
+            className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-6 flex flex-col justify-between h-full"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -50,12 +65,25 @@ export default function Projects() {
               <p className="text-gray-400 mb-4">{project.description}</p>
             </div>
             <div className="flex gap-4 mt-4">
-              <a href={project.link} className="text-white font-bold hover:underline">
+              <a 
+                href={project.link} 
+                className="text-white font-bold hover:underline"
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
                 View Code →
               </a>
-              <a href={project.liveLink} className="text-white font-bold hover:underline">
-                View Live →
-              </a>
+              {/* This link will only render if project.liveLink is not "#" */}
+              {project.liveLink && project.liveLink !== "#" && (
+                <a 
+                  href={project.liveLink} 
+                  className="text-white font-bold hover:underline"
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  View Live →
+                </a>
+              )}
             </div>
           </motion.div>
         ))}

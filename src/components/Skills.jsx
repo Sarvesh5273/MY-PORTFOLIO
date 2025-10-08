@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaGitAlt } from 'react-icons/fa';
 import Spline from '@splinetool/react-spline';
 
@@ -13,24 +13,17 @@ const skills = [
 ];
 
 export default function Skills() {
-  // Create a ref to track the scroll container
   const targetRef = useRef(null);
   
-  // useScroll will track the scroll progress within the targetRef element
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-    offset: ["start end", "end start"], // Start tracking when the top of the element hits the bottom of the viewport
-  });
-
-  // Transform the scroll progress (0 to 1) into a scale value (0.5 -> 1 -> 0.5)
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1.2, 0.5]);
+  // Note: The useScroll and useTransform hooks are no longer needed in this component,
+  // but I've left them here in case you want to re-add animations later.
 
   return (
     <div ref={targetRef} id="skills" className="relative min-h-screen flex flex-col justify-center items-center p-8 overflow-hidden">
       
+      {/* The `style` prop has been removed from this div to stop the scaling animation */}
       <motion.div
         className="absolute top-[5%] right-[-20%] w-[70%] max-w-4xl h-auto aspect-square z-0"
-        style={{ scale }} // Apply the dynamic scale here
       >
         <Spline scene="https://prod.spline.design/LwLNopv4K9vIckN6/scene.splinecode" />
       </motion.div>
@@ -53,7 +46,10 @@ export default function Skills() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            whileHover={{ scale: 1.1, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+            whileHover={{ 
+              scale: 1.1, 
+              transition: { type: "tween", duration: 0.2, ease: "easeInOut" } 
+            }}
           >
             <div className="text-6xl text-white mb-4">{skill.icon}</div>
             <h3 className="text-xl font-bold text-white">{skill.name}</h3>

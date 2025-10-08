@@ -1,5 +1,5 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import React, { Suspense, useRef } from "react"; 
+import React, { Suspense, useRef } from "react";
 
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
@@ -27,8 +27,8 @@ export default function MainSite() {
     >
       <motion.div
         className="absolute top-0 -right-[15%] w-[100%] h-full md:w-[80%] z-0"
-        style={{ 
-          x: moveX, 
+        style={{
+          x: moveX,
           y: moveY,
           willChange: "transform"
         }}
@@ -37,7 +37,6 @@ export default function MainSite() {
           <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />
         </Suspense>
       </motion.div>
-
       <div className="flex w-full max-w-7xl mx-auto">
         <motion.div
           className="relative z-10 text-center md:text-left md:w-1/2"
@@ -45,11 +44,39 @@ export default function MainSite() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
+          {/* Highlighted Hero Info */}
           <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
-            Hi, I'm Sarvesh
+            Hi, I'm{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10">Sarvesh</span>
+              <span
+                className="absolute left-0 bottom-2 w-full h-3 bg-yellow-300 rounded-md opacity-60 -z-10"
+                style={{ transform: "translateY(0.3em)" }}
+              ></span>
+            </span>
           </h1>
+          <p className="text-xl md:text-2xl mb-2 text-gray-300">
+            <span className="relative inline-block">
+              <span className="relative z-10">
+                2nd Year Computer Science (AI) Student
+              </span>
+              <span
+                className="absolute left-0 bottom-1 w-full h-3 bg-yellow-300 rounded-md opacity-60 -z-10"
+                style={{ transform: "translateY(0.3em)" }}
+              ></span>
+            </span>{" "}
+            at VIT Pune
+          </p>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
-            A passionate developer building modern web experiences.
+            Passionate about building{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10">modern web experiences</span>
+              <span
+                className="absolute left-0 bottom-1 w-full h-3 bg-yellow-300 rounded-md opacity-60 -z-10"
+                style={{ transform: "translateY(0.3em)" }}
+              ></span>
+            </span>
+            .
           </p>
           <div className="flex justify-center md:justify-start gap-4">
             <motion.a
