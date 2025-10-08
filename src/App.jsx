@@ -2,10 +2,10 @@ import { useState, Suspense, lazy } from "react";
 import Preloader from "./components/Preloader.jsx";
 import MainSite from "./components/MainSite.jsx";
 import Navbar from "./components/Navbar.jsx";
-import InteractiveStarfield from "./components/InteractiveStarfield.jsx";
+import GalaxyBackground from "./components/GalaxyBackground.jsx"; // Updated import
 import Projects from "./components/Projects.jsx";
 import Footer from "./components/Footer.jsx";
-import Astronaut from "./components/Astronaut.jsx"; // Import the new component
+import Astronaut from "./components/Astronaut.jsx"; 
 
 // Lazy load the heavy components
 const Skills = lazy(() => import("./components/Skills.jsx"));
@@ -20,8 +20,8 @@ export default function App() {
 
   return (
     <>
-      <Astronaut /> {/* Add the astronaut here */}
-      <InteractiveStarfield />
+      <Astronaut />
+      <GalaxyBackground /> {/* Updated component */}
       <Navbar />
       <MainSite />
       <Projects />

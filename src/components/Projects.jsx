@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
 const projects = [
-  { title: "Project One", description: "A brief description...", link: "#", liveLink: "#" },
-  { title: "Project Two", description: "A brief description...", link: "#", liveLink: "#" },
+  { title: "SkillNova", description: "[In Progress] An AI-powered platform that personalizes learning for every student, helping you master skills, build a standout resume, and land your dream job at your own pace. ", link: "https://github.com/Sarvesh5273/SkillNova.git", liveLink: "#" },
+  { title: "AI Tools Manager", description: "Your all-in-one dashboard to find, manage, and optimize AI tools for every workflow.", link: "https://github.com/Sarvesh5273/AI_Tools_Manager.git", liveLink: "#" },
   { title: "Project Three", description: "A brief description...", link: "#", liveLink: "#" }
 ];
 
@@ -43,7 +43,7 @@ export default function Projects() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
-            whileHover={{ y: -10 }}
+            whileHover={{ scale: 1.05, y: -10, transition: { type: "spring", stiffness: 400, damping: 10 } }}
           >
             <div>
               <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>

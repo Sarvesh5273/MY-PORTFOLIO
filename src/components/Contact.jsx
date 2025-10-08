@@ -1,24 +1,27 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Spline from '@splinetool/react-spline';
 
 export default function Contact() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [25, -25]);
-  const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [25, -25]);
+  // Create a ref to track the scroll container
+  const targetRef = useRef(null);
 
-  const handleMouseMove = (event) => {
-    x.set(event.clientX);
-    y.set(event.clientY);
-  };
+  // useScroll will track the scroll progress within the targetRef element
+  const { scrollYProgress } = useScroll({
+    target: targetRef,
+    offset: ["start end", "end start"], // Start tracking when the element enters the viewport
+  });
+
+  // Transform the scroll progress (0 to 1) into a scale value (0.5 -> 1 -> 0.5)
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1.2, 0.5]);
 
   return (
-    <div id="contact" className="relative min-h-screen flex flex-col justify-center items-center p-8 pt-24 overflow-hidden" onMouseMove={handleMouseMove}>
+    <div ref={targetRef} id="contact" className="relative min-h-screen flex flex-col justify-center items-center p-8 pt-24 overflow-hidden">
         
         {/* Responsive Spline container */}
         <motion.div
             className="absolute top-[5%] left-[-50%] md:left-[-20%] w-[100%] md:w-[70%] max-w-4xl h-auto aspect-square z-0"
-            style={{ x: moveX, y: moveY }}
+            style={{ scale }} // Apply the dynamic scale here
         >
             <Spline scene="https://prod.spline.design/8oZX4o936TB2FIgY/scene.splinecode" />
         </motion.div>
@@ -44,13 +47,13 @@ export default function Contact() {
               <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" htmlFor="grid-first-name">
                 First Name
               </label>
-              <input className="appearance-none block w-full bg-transparent text-gray-200 border-2 border-gray-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:border-white transition-colors" id="grid-first-name" type="text" placeholder="Jane" />
+              <input className="appearance-none block w-full bg-transparent text-gray-200 border-2 border-gray-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:border-white transition-colors" id="grid-first-name" type="text" placeholder="Sarvesh" />
             </div>
             <div className="w-full md:w-1/2 px-3">
               <label className="block uppercase tracking-wide text-gray-400 text-xs font-bold mb-2" htmlFor="grid-last-name">
                 Last Name
               </label>
-              <input className="appearance-none block w-full bg-transparent text-gray-200 border-2 border-gray-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:border-white transition-colors" id="grid-last-name" type="text" placeholder="Doe" />
+              <input className="appearance-none block w-full bg-transparent text-gray-200 border-2 border-gray-500 rounded-lg py-3 px-4 leading-tight focus:outline-none focus:border-white transition-colors" id="grid-last-name" type="text" placeholder="Bijawe" />
             </div>
           </div>
           <div className="flex flex-wrap -mx-3 mb-6">

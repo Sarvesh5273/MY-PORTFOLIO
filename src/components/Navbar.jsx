@@ -19,7 +19,7 @@ export default function Navbar() {
       className="fixed top-6 left-0 right-0 z-50 flex justify-center"
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }} // Faster, smoother easing
+      transition={{ type: "spring", stiffness: 100, damping: 20 }}
     >
       <div className="flex items-center gap-2 p-2 bg-black/20 backdrop-blur-lg rounded-full border border-white/10">
         
@@ -30,7 +30,7 @@ export default function Navbar() {
           variants={linkVariants}
           initial="initial"
           whileHover="hover"
-          transition={{ duration: 0.2, ease: "easeInOut" }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           Home
         </motion.a>
@@ -44,7 +44,7 @@ export default function Navbar() {
             variants={linkVariants}
             initial="initial"
             whileHover="hover"
-            transition={{ duration: 0.2, ease: "easeInOut" }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             {link}
           </motion.a>
@@ -61,12 +61,12 @@ export default function Navbar() {
           <motion.div
             className="absolute inset-0 bg-black"
             variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-            transition={{ duration: 0.3, ease: "easeOut" }} // Faster transition
+            transition={{ duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
           />
           <motion.span
             className="relative whitespace-nowrap"
             variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-            transition={{ duration: 0.3, ease: "easeOut" }} // Faster transition
+            transition={{ duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
           >
             Contact Me
           </motion.span>

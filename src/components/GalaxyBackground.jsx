@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadSlim } from "tsparticles-slim";
 
-const InteractiveStarfield = () => {
+const GalaxyBackground = () => {
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
   }, []);
@@ -17,8 +17,12 @@ const InteractiveStarfield = () => {
     interactivity: {
       events: {
         onHover: {
-          enable: false,
+          enable: false, // Turn off hover interactivity
         },
+        onClick: {
+          enable: false, // Turn off click interactivity
+        },
+        resize: true,
       },
     },
     particles: {
@@ -26,24 +30,24 @@ const InteractiveStarfield = () => {
         value: "#ffffff",
       },
       move: {
-        direction: "bottom",
+        direction: "top", // Particles drift upwards
         enable: true,
         outModes: {
           default: "out",
         },
-        random: false,
-        speed: 0.3,
-        straight: true,
+        random: true, // Movement is randomized for a natural feel
+        speed: 0.1,   // Very slow speed for a gentle drift
+        straight: false,
       },
       number: {
         density: {
           enable: true,
           area: 800,
         },
-        value: 80, // Reduced from 150 to 80
+        value: 400, // More particles for a dense, galaxy-like feel
       },
       opacity: {
-        value: { min: 0.1, max: 0.5 }, // Reduced max opacity
+        value: { min: 0.1, max: 0.5 },
         animation: {
           enable: true,
           speed: 1,
@@ -70,4 +74,4 @@ const InteractiveStarfield = () => {
   );
 };
 
-export default InteractiveStarfield;
+export default GalaxyBackground;
