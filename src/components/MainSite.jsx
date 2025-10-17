@@ -1,37 +1,18 @@
-import { motion, useMotionValue, useTransform } from "framer-motion";
-import React, { Suspense, useRef } from "react";
+import { motion } from "framer-motion";
+import React, { Suspense } from "react";
 
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
 export default function MainSite() {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rafRef = useRef(null);
-
-  const moveX = useTransform(x, [0, typeof window !== 'undefined' ? window.innerWidth : 1000], [-10, 10]);
-  const moveY = useTransform(y, [0, typeof window !== 'undefined' ? window.innerHeight : 1000], [-10, 10]);
-
-  const handleMouseMove = (event) => {
-    if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    rafRef.current = requestAnimationFrame(() => {
-      x.set(event.clientX);
-      y.set(event.clientY);
-    });
-  };
+  // All mouse-tracking and parallax effect code has been removed.
 
   return (
     <div
       id="home"
       className="relative min-h-screen flex items-center p-8 overflow-hidden"
-      onMouseMove={handleMouseMove}
     >
       <motion.div
         className="absolute top-0 -right-[15%] w-[100%] h-full md:w-[80%] z-0"
-        style={{
-          x: moveX,
-          y: moveY,
-          willChange: "transform"
-        }}
       >
         <Suspense fallback={<div>Loading...</div>}>
           <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />
@@ -44,39 +25,15 @@ export default function MainSite() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          {/* Highlighted Hero Info */}
+          {/* Text is now clean, without any highlighting spans */}
           <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
-            Hi, I'm{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">Sarvesh</span>
-              <span
-                className="absolute left-0 bottom-2 w-full h-3 bg-yellow-300 rounded-md opacity-60 -z-10"
-                style={{ transform: "translateY(0.3em)" }}
-              ></span>
-            </span>
+            Hi, I'm Sarvesh
           </h1>
           <p className="text-xl md:text-2xl mb-2 text-gray-300">
-            <span className="relative inline-block">
-              <span className="relative z-10">
-                2nd Year Computer Science (AI) Student
-              </span>
-              <span
-                className="absolute left-0 bottom-1 w-full h-3 bg-yellow-300 rounded-md opacity-60 -z-10"
-                style={{ transform: "translateY(0.3em)" }}
-              ></span>
-            </span>{" "}
-            at VIT Pune
+            2nd Year Computer Science (AI) Student at VIT Pune
           </p>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
-            Passionate about building{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10">modern web experiences</span>
-              <span
-                className="absolute left-0 bottom-1 w-full h-3 bg-yellow-300 rounded-md opacity-60 -z-10"
-                style={{ transform: "translateY(0.3em)" }}
-              ></span>
-            </span>
-            .
+            Passionate about building modern web experiences.
           </p>
           <div className="flex justify-center md:justify-start gap-4">
             <motion.a
