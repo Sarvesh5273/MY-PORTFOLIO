@@ -12,7 +12,7 @@ export default function MainSite() {
       className="relative min-h-screen flex items-center p-8 overflow-hidden"
     >
       <motion.div
-        className="absolute top-0 -right-[15%] w-[100%] h-full md:w-[80%] z-0"
+        className="absolute top-0 -right-[15%] w-[100%] h-full md:w-[80%] z-0 globe-container"
       >
         <Suspense fallback={<div>Loading...</div>}>
           <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />

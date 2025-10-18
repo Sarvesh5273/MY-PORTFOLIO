@@ -12,3 +12,16 @@ body {
   overflow-x: hidden;
   /* All cursor properties have been removed to restore the default system cursor */
 }
+
+.globe-container {
+  mask-image: linear-gradient(
+    to bottom,
+    black 80%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    black 80%,
+    transparent 100%
+  );
+}
