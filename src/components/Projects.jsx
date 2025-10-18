@@ -33,7 +33,10 @@ export default function Projects() {
       <motion.img
         src="/mars.png"
         alt="A red planet"
-        className="absolute top-[5%] left-[-20%] w-[70%] max-w-4xl opacity-40"
+        // On mobile: smaller, different position, lower opacity
+        // On md and up: your original styles
+        className="absolute top-[10%] left-[-30%] w-[80%] max-w-4xl opacity-20 
+                   md:top-[5%] md:left-[-20%] md:w-[70%] md:opacity-40"
         style={{ x: moveX, y: moveY }}
         animate={{ rotate: 360 }}
         transition={{ duration: 200, repeat: Infinity, ease: "linear" }}

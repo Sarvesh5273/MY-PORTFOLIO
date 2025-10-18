@@ -13,14 +13,14 @@ const GalaxyBackground = () => {
         value: "#000000",
       },
     },
-    fpsLimit: 60,
+    fpsLimit: 60, // Keep this for performance
     interactivity: {
       events: {
         onHover: {
-          enable: false, // Turn off hover interactivity
+          enable: false, // Keep interactivity off
         },
         onClick: {
-          enable: false, // Turn off click interactivity
+          enable: false,
         },
         resize: true,
       },
@@ -30,24 +30,26 @@ const GalaxyBackground = () => {
         value: "#ffffff",
       },
       move: {
-        direction: "top", // Particles drift upwards
+        // --- UPDATED ---
+        direction: "bottom", // Move stars downwards
         enable: true,
         outModes: {
-          default: "out",
+          default: "out", // Make particles disappear when they go off-screen
         },
-        random: true, // Movement is randomized for a natural feel
-        speed: 0.1,   // Very slow speed for a gentle drift
-        straight: false,
+        random: false,    // Less random for a more uniform "warp speed" feel
+        speed: 2,       // Increased speed
+        straight: true,  // Move in straight lines
+        // --- END UPDATED ---
       },
       number: {
         density: {
           enable: true,
           area: 800,
         },
-        value: 400, // More particles for a dense, galaxy-like feel
+        value: 400, // Keep particle count
       },
       opacity: {
-        value: { min: 0.1, max: 0.5 },
+        value: { min: 0.1, max: 0.5 }, // Keep fading effect
         animation: {
           enable: true,
           speed: 1,
@@ -58,7 +60,7 @@ const GalaxyBackground = () => {
         type: "circle",
       },
       size: {
-        value: { min: 0.5, max: 1.5 },
+        value: { min: 0.5, max: 1.5 }, // Keep size variation
       },
     },
     detectRetina: true,

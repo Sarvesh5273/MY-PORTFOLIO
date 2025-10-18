@@ -1,35 +1,58 @@
 import { motion } from "framer-motion";
-import React, { Suspense } from "react";
+import React, { Suspense, useState, useEffect } from "react"; // Import useState and useEffect
 import { Typewriter } from 'react-simple-typewriter';
 import { FaGithub, FaLinkedin, FaArrowDown } from 'react-icons/fa'; 
 
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
 export default function MainSite() {
+  // --- START: Add this logic ---
+  const [isLargeScreen, setIsLargeScreen] = useState(
+    typeof window !== 'undefined' ? window.matchMedia("(min-width: 768px)").matches : false
+  );
+  
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const handler = () => setIsLargeScreen(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+  // --- END: Add this logic ---
+
   return (
     <div
       id="home"
-      className="relative min-h-screen flex items-center p-8 overflow-hidden"
+      className="relative min-h-screen flex items-center p-8 pt-24 overflow-hidden"
     >
-      {/* --- SPLINE OBJECT (No Change) --- */}
+      {/* --- SPLINE OBJECT (MODIFIED) --- */}
       <motion.div
-        className="absolute top-0 -right-[15%] w-[100%] h-full md:w-[80%] z-0 globe-container"
+        className="absolute top-0 -right-[50%] w-[150%] h-full 
+                   md:w-[80%] md:-right-[15%] z-0 globe-container opacity-50 md:opacity-100"
       >
         <Suspense fallback={<div>Loading...</div>}>
-          <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />
+          {/* Only render Spline on large screens */}
+          {isLargeScreen ? (
+            <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />
+          ) : (
+            // Mobile fallback: Show a static image instead
+            <img src="/mars.png" alt="Planet" className="w-full h-full object-contain opacity-50" />
+          )}
         </Suspense>
       </motion.div>
 
       {/* --- TEXT & CTA CONTENT --- */}
       <div className="flex w-full max-w-7xl mx-auto">
         <motion.div
-          className="relative z-10 text-center md:text-left md:w-1/2"
+          className="relative z-10 text-center w-full md:text-left md:w-1/2"
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          {/* 1. Typewriter (No Change) */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white" style={{ minHeight: '90px' }}>
+          {/* ... (rest of the component is the same) ... */}
+          
+          {/* 1. Typewriter */}
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold mb-8 text-white" style={{ minHeight: '90px' }}>
             <Typewriter
               words={[
                 "Hi, I'm Sarvesh",
@@ -45,46 +68,44 @@ export default function MainSite() {
             />
           </h1>
 
-          {/* 2. CTA Buttons (Updated transition) */}
-          <div className="flex justify-center md:justify-start gap-4">
+          {/* 2. CTA Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center md:justify-start gap-4 items-center sm:items-stretch">
             <motion.a
               href="#projects"
               className="relative flex items-center justify-center rounded-full bg-white overflow-hidden px-5 py-2 border-2 border-white"
-              style={{ width: 150 }}
+              style={{ width: 150 }} 
               whileHover="hover"
               initial="rest"
             >
               <motion.div
                 className="absolute inset-0 bg-black"
                 variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-                // UPDATED: Changed duration to 0.4s and simplified ease
                 transition={{ duration: 0.4, ease: "easeInOut" }} 
               />
               <motion.span
                 className="relative whitespace-nowrap font-bold"
                 variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-                // UPDATED: Matched the transition
                 transition={{ duration: 0.4, ease: "easeInOut" }} 
               >
                 View My Work
               </motion.span>
-            </motion.a>
+            </motion.a> 
+
             <a
               href="#contact"
-              className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-black transition-colors duration-300"
+              className="bg-transparent border-2 border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-black transition-colors duration-300 w-full sm:w-auto text-center"
             >
               Get in Touch
             </a>
           </div>
 
-          {/* 3. Social Media Icons (Updated transition) */}
+          {/* 3. Social Media Icons */}
           <div className="flex justify-center md:justify-start gap-6 mt-8">
             <motion.a
               href="https://github.com/Sarvesh5273"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, y: -2 }}
-              // UPDATED: Changed duration to 0.3s and ease to easeInOut
               transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
               className="text-gray-400 hover:text-white"
             >
@@ -95,7 +116,6 @@ export default function MainSite() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, y: -2 }}
-              // UPDATED: Changed duration to 0.3s and ease to easeInOut
               transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
               className="text-gray-400 hover:text-white"
             >
@@ -106,7 +126,7 @@ export default function MainSite() {
         </motion.div>
       </div>
 
-      {/* 4. Scroll Down Indicator (No Change) */}
+      {/* 4. Scroll Down Indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
         animate={{ y: [0, 10, 0] }} // Bouncing animation

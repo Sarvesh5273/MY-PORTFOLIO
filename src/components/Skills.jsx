@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react"; // Import useState and useEffect
 import { motion } from "framer-motion";
 import { FaReact, FaNodeJs, FaHtml5, FaCss3Alt, FaJsSquare, FaGitAlt } from 'react-icons/fa';
 import Spline from '@splinetool/react-spline';
@@ -14,19 +14,33 @@ const skills = [
 
 export default function Skills() {
   const targetRef = useRef(null);
-  
-  // Note: The useScroll and useTransform hooks are no longer needed in this component,
-  // but I've left them here in case you want to re-add animations later.
 
+  // --- START: Add this logic ---
+  const [isLargeScreen, setIsLargeScreen] = useState(
+    typeof window !== 'undefined' ? window.matchMedia("(min-width: 768px)").matches : false
+  );
+  
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia("(min-width: 768px)");
+    const handler = () => setIsLargeScreen(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handler);
+    return () => mediaQuery.removeEventListener("change", handler);
+  }, []);
+  // --- END: Add this logic ---
+  
   return (
     <div ref={targetRef} id="skills" className="relative min-h-screen flex flex-col justify-center items-center p-8 overflow-hidden">
       
-      {/* The `style` prop has been removed from this div to stop the scaling animation */}
-      <motion.div
-        className="absolute top-[5%] right-[-20%] w-[70%] max-w-4xl h-auto aspect-square z-0"
-      >
-        <Spline scene="https://prod.spline.design/LwLNopv4K9vIckN6/scene.splinecode" />
-      </motion.div>
+      {/* Conditionally render Spline component */}
+      {isLargeScreen && (
+        <motion.div
+          className="absolute top-[5%] right-[-50%] w-[100%] max-w-4xl h-auto aspect-square z-0
+                     md:right-[-20%] md:w-[70%]"
+        >
+          <Spline scene="https://prod.spline.design/LwLNopv4K9vIckN6/scene.splinecode" />
+        </motion.div>
+      )}
       
       <motion.h2
         className="text-4xl md:text-5xl font-bold text-white text-center mb-12 z-10"
