@@ -1,16 +1,17 @@
 import { motion } from "framer-motion";
 import React, { Suspense } from "react";
+import { Typewriter } from 'react-simple-typewriter';
+import { FaGithub, FaLinkedin, FaArrowDown } from 'react-icons/fa'; 
 
 const Spline = React.lazy(() => import('@splinetool/react-spline'));
 
 export default function MainSite() {
-  // All mouse-tracking and parallax effect code has been removed.
-
   return (
     <div
       id="home"
       className="relative min-h-screen flex items-center p-8 overflow-hidden"
     >
+      {/* --- SPLINE OBJECT (No Change) --- */}
       <motion.div
         className="absolute top-0 -right-[15%] w-[100%] h-full md:w-[80%] z-0 globe-container"
       >
@@ -18,6 +19,8 @@ export default function MainSite() {
           <Spline scene="https://prod.spline.design/hBa1HietV6xNSj2q/scene.splinecode" />
         </Suspense>
       </motion.div>
+
+      {/* --- TEXT & CTA CONTENT --- */}
       <div className="flex w-full max-w-7xl mx-auto">
         <motion.div
           className="relative z-10 text-center md:text-left md:w-1/2"
@@ -25,16 +28,24 @@ export default function MainSite() {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
-          {/* Text is now clean, without any highlighting spans */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-white">
-            Hi, I'm Sarvesh
+          {/* 1. Typewriter (No Change) */}
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 text-white" style={{ minHeight: '90px' }}>
+            <Typewriter
+              words={[
+                "Hi, I'm Sarvesh",
+                "I'm a 2nd year CS (AI) Student at VIT Pune",
+                "I build modern web experiences."
+              ]}
+              loop={0}
+              cursor
+              cursorStyle='_'
+              typeSpeed={70}
+              deleteSpeed={50}
+              delaySpeed={3000}
+            />
           </h1>
-          <p className="text-xl md:text-2xl mb-2 text-gray-300">
-            2nd Year Computer Science (AI) Student at VIT Pune
-          </p>
-          <p className="text-xl md:text-2xl mb-8 text-gray-300">
-            Passionate about building modern web experiences.
-          </p>
+
+          {/* 2. CTA Buttons (Updated transition) */}
           <div className="flex justify-center md:justify-start gap-4">
             <motion.a
               href="#projects"
@@ -46,12 +57,12 @@ export default function MainSite() {
               <motion.div
                 className="absolute inset-0 bg-black"
                 variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }} // <-- Matched to Navbar
               />
               <motion.span
                 className="relative whitespace-nowrap font-bold"
                 variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }} // <-- Matched to Navbar
               >
                 View My Work
               </motion.span>
@@ -63,8 +74,48 @@ export default function MainSite() {
               Get in Touch
             </a>
           </div>
+
+          {/* 3. Social Media Icons (Updated transition) */}
+          <div className="flex justify-center md:justify-start gap-6 mt-8">
+            <motion.a
+              href="https://github.com/Sarvesh5273"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, y: -2 }}
+              transition={{ type: "tween", duration: 0.2, ease: "easeOut" }} // <-- Added smooth transition
+              className="text-gray-400 hover:text-white"
+            >
+              <FaGithub size={30} />
+            </motion.a>
+            <motion.a
+              href="https://www.linkedin.com/in/sarvesh-bijawe-a0020138b/"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.2, y: -2 }}
+              transition={{ type: "tween", duration: 0.2, ease: "easeOut" }} // <-- Added smooth transition
+              className="text-gray-400 hover:text-white"
+            >
+              <FaLinkedin size={30} />
+            </motion.a>
+          </div>
+
         </motion.div>
       </div>
+
+      {/* 4. Scroll Down Indicator (No Change) */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
+        animate={{ y: [0, 10, 0] }} // Bouncing animation
+        transition={{
+          duration: 1.5,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      >
+        <a href="#projects" aria-label="Scroll down to projects">
+          <FaArrowDown className="text-white text-2xl" />
+        </a>
+      </motion.div>
     </div>
   );
 }

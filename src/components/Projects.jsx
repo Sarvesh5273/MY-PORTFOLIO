@@ -1,6 +1,6 @@
 import { motion, useMotionValue, useTransform } from "framer-motion";
 
-// I've added liveLink properties. Set them to "#" if no live link is available.
+// ... projects array ...
 const projects = [
   { 
     title: "SkillNova", 
@@ -15,6 +15,7 @@ const projects = [
     liveLink: "#"
   },
 ];
+
 
 export default function Projects() {
   const x = useMotionValue(0);
@@ -45,20 +46,23 @@ export default function Projects() {
       >
         My Projects
       </motion.h2>
-      {/* Key Changes for Alignment:
-        1. Changed lg:grid-cols-3 to lg:grid-cols-2 to better suit two projects.
-        2. Added justify-center to center the items within the grid container.
-      */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-7xl z-10 w-full justify-center">
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            // Added `h-full` to ensure cards in the same row have equal height
             className="bg-white/5 backdrop-blur-md rounded-2xl border border-white/10 p-6 flex flex-col justify-between h-full"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-            whileHover={{ scale: 1.05, y: -10, transition: { type: "spring", stiffness: 400, damping: 10 } }}
+            whileHover={{ scale: 1.05, y: -10 }}
+            // --- FIX IS HERE ---
+            // Combined both transitions into one prop.
+            transition={{ 
+              duration: 0.5, // This is for whileInView
+              delay: index * 0.2, // This is for whileInView
+              // This is for whileHover (replaces the separate prop)
+              scale: { type: "tween", duration: 0.2, ease: "easeOut" },
+              y: { type: "tween", duration: 0.2, ease: "easeOut" }
+            }}
           >
             <div>
               <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
@@ -73,7 +77,6 @@ export default function Projects() {
               >
                 View Code →
               </a>
-              {/* This link will only render if project.liveLink is not "#" */}
               {project.liveLink && project.liveLink !== "#" && (
                 <a 
                   href={project.liveLink} 

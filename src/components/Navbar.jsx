@@ -30,7 +30,7 @@ export default function Navbar() {
           variants={linkVariants}
           initial="initial"
           whileHover="hover"
-          transition={{ duration: 0.3, ease: "easeInOut" }}
+          transition={{ duration: 0.2, ease: "easeInOut" }} // <-- Sped up from 0.3s
         >
           Home
         </motion.a>
@@ -44,7 +44,7 @@ export default function Navbar() {
             variants={linkVariants}
             initial="initial"
             whileHover="hover"
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.2, ease: "easeInOut" }} // <-- Sped up from 0.3s
           >
             {link}
           </motion.a>
@@ -61,12 +61,12 @@ export default function Navbar() {
           <motion.div
             className="absolute inset-0 bg-black"
             variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-            transition={{ duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
+            transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }} // <-- Sped up from 0.4s
           />
           <motion.span
             className="relative whitespace-nowrap"
             variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-            transition={{ duration: 0.4, ease: [0.43, 0.13, 0.23, 0.96] }}
+            transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }} // <-- Sped up from 0.4s
           >
             Contact Me
           </motion.span>
