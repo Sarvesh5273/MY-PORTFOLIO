@@ -54,14 +54,13 @@ export default function Projects() {
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             whileHover={{ scale: 1.05, y: -10 }}
-            // --- FIX IS HERE ---
-            // Combined both transitions into one prop.
+            // --- UPDATED TRANSITION ---
             transition={{ 
-              duration: 0.5, // This is for whileInView
-              delay: index * 0.2, // This is for whileInView
-              // This is for whileHover (replaces the separate prop)
-              scale: { type: "tween", duration: 0.2, ease: "easeOut" },
-              y: { type: "tween", duration: 0.2, ease: "easeOut" }
+              duration: 0.5, // whileInView
+              delay: index * 0.2, // whileInView
+              // whileHover: Changed duration to 0.3s and ease to easeInOut
+              scale: { type: "tween", duration: 0.3, ease: "easeInOut" },
+              y: { type: "tween", duration: 0.3, ease: "easeInOut" }
             }}
           >
             <div>

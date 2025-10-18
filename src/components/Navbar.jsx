@@ -10,7 +10,7 @@ export default function Navbar() {
     },
     hover: {
       borderColor: "rgba(255, 255, 255, 1)", // Solid white border
-      scale: 1.05,
+      scale: 0.9,
     },
   };
 
@@ -30,7 +30,8 @@ export default function Navbar() {
           variants={linkVariants}
           initial="initial"
           whileHover="hover"
-          transition={{ duration: 0.2, ease: "easeInOut" }} // <-- Sped up from 0.3s
+          // UPDATED: Changed duration from 0.2 to 0.3 for a softer effect
+          transition={{ duration: 0.3, ease: "easeInOut" }}
         >
           Home
         </motion.a>
@@ -44,7 +45,8 @@ export default function Navbar() {
             variants={linkVariants}
             initial="initial"
             whileHover="hover"
-            transition={{ duration: 0.2, ease: "easeInOut" }} // <-- Sped up from 0.3s
+            // UPDATED: Changed duration from 0.2 to 0.3 for a softer effect
+            transition={{ duration: 0.3, ease: "easeInOut" }}
           >
             {link}
           </motion.a>
@@ -61,12 +63,14 @@ export default function Navbar() {
           <motion.div
             className="absolute inset-0 bg-black"
             variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-            transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }} // <-- Sped up from 0.4s
+            // UPDATED: Changed duration to 0.4s and simplified ease for a smoother wipe
+            transition={{ duration: 0.4, ease: "easeInOut" }}
           />
           <motion.span
             className="relative whitespace-nowrap"
             variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-            transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }} // <-- Sped up from 0.4s
+            // UPDATED: Matched the transition to the wipe
+            transition={{ duration: 0.4, ease: "easeInOut" }}
           >
             Contact Me
           </motion.span>

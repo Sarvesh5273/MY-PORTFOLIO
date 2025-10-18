@@ -57,12 +57,14 @@ export default function MainSite() {
               <motion.div
                 className="absolute inset-0 bg-black"
                 variants={{ rest: { y: "100%" }, hover: { y: 0 } }}
-                transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }} // <-- Matched to Navbar
+                // UPDATED: Changed duration to 0.4s and simplified ease
+                transition={{ duration: 0.4, ease: "easeInOut" }} 
               />
               <motion.span
                 className="relative whitespace-nowrap font-bold"
                 variants={{ rest: { color: "#000000" }, hover: { color: "#FFFFFF" } }}
-                transition={{ duration: 0.3, ease: [0.43, 0.13, 0.23, 0.96] }} // <-- Matched to Navbar
+                // UPDATED: Matched the transition
+                transition={{ duration: 0.4, ease: "easeInOut" }} 
               >
                 View My Work
               </motion.span>
@@ -82,7 +84,8 @@ export default function MainSite() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, y: -2 }}
-              transition={{ type: "tween", duration: 0.2, ease: "easeOut" }} // <-- Added smooth transition
+              // UPDATED: Changed duration to 0.3s and ease to easeInOut
+              transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
               className="text-gray-400 hover:text-white"
             >
               <FaGithub size={30} />
@@ -92,7 +95,8 @@ export default function MainSite() {
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2, y: -2 }}
-              transition={{ type: "tween", duration: 0.2, ease: "easeOut" }} // <-- Added smooth transition
+              // UPDATED: Changed duration to 0.3s and ease to easeInOut
+              transition={{ type: "tween", duration: 0.3, ease: "easeInOut" }}
               className="text-gray-400 hover:text-white"
             >
               <FaLinkedin size={30} />
