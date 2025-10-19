@@ -86,4 +86,3 @@ npm run preview
 
 ---
 
-**Pro Tip:** Use relative paths for images within the repo (`screenshots/hero.png`) so that they render correctly on GitHub.
