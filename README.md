@@ -1,16 +1,88 @@
-# React + Vite
+# Sarvesh Bijawe — Developer Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+This is my personal developer portfolio, built for the **DevOne Hackathon 2025**.
+It’s a modern, interactive website that showcases my skills, projects, and creativity as a web developer.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Live Demo:** [sarveshbijawe.netlify.app](https://sarveshbijawe.netlify.app)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Tech Stack Used
 
-## Expanding the ESLint configuration
+* **Frontend:** React + Vite
+* **Styling:** Tailwind CSS, Framer Motion, GSAP
+* **3D & Animations:** Three.js, React Three Fiber, Spline Models
+* **Build & Deployment:** Netlify
+* **Other Libraries:** Howler.js, opentype.js
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## Features
+
+* **Hero Section:** Typewriter effect introducing myself
+* **3D Interactive Elements:** Floating astronaut, Earth, Moon, Saturn with scroll-triggered animations
+* **Projects Section:** Showcases my web apps with live links and GitHub repositories
+* **Skills / Tech Stack Section:** Interactive display of skills and technologies
+* **Contact Section:** Connect via email, LinkedIn, or GitHub
+* **Responsive Design:** Works seamlessly on desktop and mobile
+* **Smooth Animations:** Parallax effects, hovering animations, stars background
+
+---
+
+## Screenshots / Demo
+
+You can add images/screenshots to the README using Markdown syntax:
+
+### Example:
+
+![Hero Section](https://github.com/sarveshbijawe/portfolio/blob/main/screenshots/hero.png)
+
+![Projects Section](https://github.com/sarveshbijawe/portfolio/blob/main/screenshots/projects.png)
+
+> **Tip:** Create a `screenshots/` folder in your repository and upload all screenshots there.
+
+---
+
+## Installation & Run Locally
+
+1. Clone the repo:
+
+```bash
+git clone https://github.com/sarveshbijawe/portfolio.git
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start dev server:
+
+```bash
+npm run dev
+```
+
+4. Build for production:
+
+```bash
+npm run build
+```
+
+5. Preview production build:
+
+```bash
+npm run preview
+```
+
+---
+
+## Notes for Hackathon
+
+* All 3D models are loaded via HTTPS links to ensure smooth deployment on Netlify
+* Portfolio is fully interactive, showcasing modern web development skills
+
+---
+
