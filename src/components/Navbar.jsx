@@ -72,10 +72,8 @@ export default function Navbar() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
       >
-        <div className="hidden md:flex items-center gap-2 p-2 bg-black/20 backdrop-blur-lg rounded-full border border-white/10">
-          {/* ... (desktop links remain the same) ... */}
-          <motion.a
-            href="#home"
+            <div className="hidden md:flex items-center gap-2 p-2 bg-black/20 backdrop-blur-lg rounded-full border-2 border-gray-800">          
+            <motion.a href="#home"
             className="text-white text-sm font-medium px-4 py-2 rounded-full border-2"
             variants={linkVariants}
             initial="initial"
