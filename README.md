@@ -36,8 +36,8 @@ It’s a modern, interactive website that showcases my skills, projects, and cre
 Here’s a preview of the portfolio:
 
 ![Hero Section](screenshots/hero.png)
-![Projects Section](screenshots/projects.png)
-![Skills Section](screenshots/skills.png)
+![Projects Section](screenshots/project.png)
+![Skills Section](screenshots/skill.png)
 ![Contact Section](screenshots/contact.png)
 
 > Tip: Keep your screenshots concise and high quality — it helps judges immediately see your work.
