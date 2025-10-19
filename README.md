@@ -33,17 +33,15 @@ It’s a modern, interactive website that showcases my skills, projects, and cre
 
 ## Screenshots / Demo
 
-You can add images/screenshots to the README using Markdown syntax:
+Here’s a preview of the portfolio:
 
-### Example:
+![Hero Section](screenshots/hero.png)
+![Projects Section](screenshots/projects.png)
+![Skills Section](screenshots/skills.png)
+![Contact Section](screenshots/contact.png)
 
-![Hero Section](https://github.com/sarveshbijawe/portfolio/blob/main/screenshots/hero.png)
+> Tip: Keep your screenshots concise and high quality — it helps judges immediately see your work.
 
-![Projects Section](https://github.com/sarveshbijawe/portfolio/blob/main/screenshots/projects.png)
-
-> **Tip:** Create a `screenshots/` folder in your repository and upload all screenshots there.
-
----
 
 ## Installation & Run Locally
 
